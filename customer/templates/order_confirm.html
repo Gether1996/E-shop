@@ -27,16 +27,16 @@
             {% for pt in product_totals %}
             <tr>
                 <td>{{ pt.product.title }}</td>
-                <td>{{ pt.quantity }}</td>
-                <td>{{ pt.product.price }}</td>
-                <td>{{ pt.total }}</td>
+                <td style="width: 30px; text-align: center;">{{ pt.quantity }}</td>
+                <td style="width: 200px; text-align: right;">{{ pt.product.price }} €</td>
+                <td style="width: 300px; text-align: right;">{{ pt.total }} €</td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="3">Total</td>
-                <td>{{ total }}</td>
+                <td style="width: 300px; text-align: right;">{{ total }}</td>
             </tr>
         </tfoot>
     </table>
