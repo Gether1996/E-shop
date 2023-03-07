@@ -32,7 +32,7 @@
 
 ## Screenshots
 
-### Homepage (user gether is admin)
+### Homepage (user gether is admin - thus why adding buttons/admin navbar button are visible)
 ![Homepage](screenshots/homepage.jpg)
 
 ### Sign-up
