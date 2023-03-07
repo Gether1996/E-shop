@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+
+  {% if items.count > 0 %}
+  <div class="cart_design">
+    <h2>Cart for {{ cart.user.username }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th width="20">ID</th>
+          <th>Product Name</th>
+          <th width="100">Price</th>
+          <th width="50">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <th>{{ item.product.id }}</th>
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.product.price }} €</td>
+            <td>{{ item.quantity }}</td>
+            <td width="100"><a href="{% url 'remove_from_cart' item.product.id %}">Remove from cart</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+          <td colspan="2"><p style="font-size: 30px;">Total price of your cart is:</p></td>
+          <td>{{ total }} €</td>
+      </tfoot>
+    </table>
+    
+    <a href="http://127.0.0.1:8000/order_confirm/"><button class="confirm_order_btn" type="submit">Order summary</button></a>
+  {% else %}
+    <p style="margin-left: 20px; font-size: 20px;">Your cart is empty.</p>
+  {% endif %}
+  </div>
+{% endblock %}

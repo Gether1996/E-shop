@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Televisions<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/main_category/Televisions">All TVs</a></li>
+           {% for category in categories %}
+              {% if category.category.name == 'Televisions' %}
+              <li><a href="/categories/{{ category.name }}/">{{ category.name }}</a></li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Major Appliances<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/main_category/Major Appliances">All MAs</a></li>
+          {% for category in categories %}
+              {% if category.category.name == 'Major Appliances' %}
+              <li><a href="/categories/{{ category.name }}/">{{ category.name }}</a></li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Smartphones<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/main_category/Smartphones">All Smartphones</a></li>
+           {% for category in categories %}
+              {% if category.category.name == 'Smartphones' %}
+              <li><a href="/categories/{{ category.name }}/">{{ category.name }}</a></li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Accessories<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/main_category/Accessories">All Accessories</a></li>
+           {% for category in categories %}
+              {% if category.category.name == 'Accessories' %}
+              <li><a href="/categories/{{ category.name }}/">{{ category.name }}</a></li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Computers<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/main_category/Computers and Laptops">All Computers</a></li>
+           {% for category in categories %}
+              {% if category.category.name == 'Computers and Laptops' %}
+              <li><a href="/categories/{{ category.name }}/">{{ category.name }}</a></li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+      <form class="navbar-form navbar-left" method="POST" action="{% url 'search' %}">
+          {% csrf_token %}
+      <div class="form-group">
+        <input name="search" type="text" class="form-control" placeholder="Search" />
+      </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+
+    <ul class="nav navbar-nav navbar-right">
+      {% if perms.viewer %}
+        <li><a href="http://127.0.0.1:8000/admin/"><span class="glyphicon glyphicon-user"></span>Admin</a></li>
+      {% endif %}
+      {% if not request.user.is_authenticated %}
+      <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+      <li ><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+      {% else %}
+      <li ><a href="{% url 'login' %}" id="id_login"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+      {% endif %}
+
+      <li class="nav-item active">
+          <a class="nav-link" href="/view_cart/">Cart
+            <span class="badge badge-success"></span>
+            <span class="sr-only"></span></a>
+        </li>
+    </ul>
+  </div>
+  <div id="search">
+
+  </div>
+</nav>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

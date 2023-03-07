@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+    <div class="weird_container">
+        <h1>Electronics e-shop</h1>
+        {% if request.user.is_authenticated %}
+            {% if temperature is not none %}
+                <div class="temperature">Weather in {{ user.city }}: {{ temperature }}°C
+                    <img src="{{ icon_url }}">{{ weather_description }}
+                </div>
+
+            {% endif %}
+            <div class="hmmm">
+                <p class="glyphicon glyphicon-user">{{ request.user.username }}</p>
+            </div>
+        {% else %}
+            <div class="hmmm">
+                <p class="glyphicon glyphicon-user">Guest</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+{% include 'navbar.html' %}
+
+
+
+<div class="main_content">
+    {% block content %} {% endblock %}
+
+
+</div>
+<footer>Vytvořil &copy;Patrik & Peter PythonRemoteSK2  <a href="{% url 'contact' %}" class="url_contact">Contact</a></footer>
+</body>
+<script>
+    window.onresize = function() {
+        var body = document.body,
+            html = document.documentElement;
+
+        var height = Math.max( body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+        if (height > window.innerHeight) {
+            document.querySelector('footer').style.position = 'relative';
+        } else {
+            document.querySelector('footer').style.position = 'absolute';
+        }
+    }
+
+    window.onresize();
+</script>
+</html>
+

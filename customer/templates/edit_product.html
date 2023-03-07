@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit product{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+  <div class="new-product-form">
+    <form method="post" action="{% url 'edit_product' product_id %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>{{ form }}</table>
+      <button class="new_prod_btn" type="submit">Save</button>
+    </form>
+  </div>
+{% endblock %}

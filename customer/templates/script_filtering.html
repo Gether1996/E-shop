@@ -1,0 +1,41 @@
+{% load static %}
+<form id="price-form" method="GET">
+
+    <select id="category" name="category">
+        <option value="">All categories</option>
+        {% for category in categories %}
+            <option>{{ category.name }}</option>
+        {% endfor %}
+    </select>
+        <input type="number" id="min-price" name="min_price" placeholder="Minimum price">
+        <input type="number" id="max-price" name="max_price" placeholder="Maximum price">
+        <button type="submit">Submit</button>
+</form>
+
+<script>
+  const form = document.getElementById('price-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent the form from submitting
+    const minPrice = document.getElementById('min-price').value; // get the minimum price input
+    const maxPrice = document.getElementById('max-price').value; // get the maximum price input
+    const category = document.getElementById('category').value;
+    let url = 'http://127.0.0.1:8000/'; // start with the base URL
+    if (category && minPrice && maxPrice) {
+      url += `categories/${category}/price/range/${minPrice}/${maxPrice}/`; // add both category and price range to the URL
+    } else if (category && minPrice) {
+      url += `categories/${category}/price/min/${minPrice}/`; // add category and minimum price to the URL
+    } else if (category && maxPrice) {
+      url += `categories/${category}/price/max/${maxPrice}/`; // add category and maximum price to the URL
+    } else if (minPrice && maxPrice) {
+      url += `price/range/${minPrice}/${maxPrice}/`; // add both prices to the URL
+    } else if (minPrice) {
+      url += `price/min/${minPrice}/`; // add only the minimum price to the URL
+    } else if (maxPrice) {
+      url += `price/max/${maxPrice}/`; // add only the maximum price to the URL
+    } else if (category) {
+      url += `categories/${category}/`; // add only the category to the URL
+    }
+    form.action = url; // update the form action
+    form.submit(); // submit the form
+  });
+</script>

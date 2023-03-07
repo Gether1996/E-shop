@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+       {% if perms.viewer.add_product %}
+      <a href="http://127.0.0.1:8000/products/{{ product.id }}/edit/">
+          <button class="btn-add_product">Edit product</button>
+      </a>
+      {% endif %}
+  <img src="{{ MEDIA_URL }}{{ product.thumbnail.url }}" style="position: fixed; right: 0; width: 600px; margin: 50px 70px;">
+  <h1>{{ product.title }}</h1>
+    <div class="prod-details">
+      <p><span class="description">Price:</span> {{ product.price }} €</p>
+      <p><span class="description">Category:</span>  {{ product.category }}</p>
+      <p><span class="description">Producer:</span>  {{ product.producer }}</p>
+      <p><span class="description">Type:</span>  {{ product.product_type }}</p>
+      <p><span class="description">Available:</span>  {{ product.availability }}</p>
+    </div>
+  <p style="margin: 24px; border-style: outset; width: 500px; font-size: 17px">{{ product.description }}</p>
+
+    <form action="{% url 'add_to_cart' product.id %}" method="post">
+      {% csrf_token %}
+      <label for="quantity"></label>
+      <input type="submit" value="Add to cart" class="btn btn-success form-control" style="width: 500px; margin-left: 20px;">
+      <br>
+      <input class="amount" type="number" name="quantity" id="quantity" placeholder="Amount" style="margin-left: 250px" value="1">
+    </form>
+
+
+
+{% endblock %}
+

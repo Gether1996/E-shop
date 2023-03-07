@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+<head>
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <div class="order_confirm_whole">
+    <h2>User Details:</h2>
+    <p>Name: {{ cart.user.first_name }} {{ cart.user.last_name }}</p>
+    <p>Email: {{ cart.user.email }}</p>
+    <p>Address: {{ user.address }}, {{ user.zipcode }}, {{ user.city }}</p>
+    <h2>Order Details:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pt in product_totals %}
+            <tr>
+                <td>{{ pt.product.title }}</td>
+                <td>{{ pt.quantity }}</td>
+                <td>{{ pt.product.price }}</td>
+                <td>{{ pt.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+        <a href="http://127.0.0.1:8000/delivery_payment/"><button class="confirm_order_btn" type="submit">Delivery and Payment</button></a>
+    </div>
+
+</body>
+
+{% endblock %}

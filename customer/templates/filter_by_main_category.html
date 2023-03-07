@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+
+<div style="display: flex; align-items: center;">
+    {% if perms.viewer.add_product %}
+      <a href="http://127.0.0.1:8000/new_product/">
+          <button class="btn-add_product">Add new product</button>
+      </a>
+      <a href="http://127.0.0.1:8000/new_category/">
+          <button class="btn-add_product">Add new category</button>
+      </a>
+    {% endif %}
+  <div style="display: flex; align-items: center; margin-left: 30px;">
+    <span style="margin-right: 10px; font-size: 20px;">Filter:</span>
+    {% include 'script_filtering.html' %}
+  </div>
+</div>
+
+  <h1>{{ main_category.name }}</h1>
+  <ul class="main_cat_ul">
+{% for obj in products %}
+<div class="item">
+    <a href="{% url 'product_detail' obj.id %}">
+        <img src="{{ MEDIA_URL }}{{ obj.thumbnail.url }}" width="230" height="200" style="padding-top: 20px;"/>
+        <span class="caption">{{ obj.title }}</span>
+        <p style="font-size: 20px;">{{ obj.price }}€</p></a>
+
+    <form action="{% url 'add_to_cart' obj.id %}" method="post">
+      {% csrf_token %}
+      <label for="quantity"></label>
+      <input type="submit" value="Add to cart" class="btn btn-success form-control">
+      <br>
+      <input class="amount" type="number" name="quantity" id="quantity" value="1">
+    </form>
+</div>
+{% endfor %}
+  </ul>
+{% endblock %}
