@@ -5,4 +5,5 @@
 <link rel="stylesheet" href="{% static 'style1.css' %}">
 <h1>Payment Successful!</h1>
 <h2 style="margin-left: 22px;">Thank you for order {{ request.user.username }}! Your order number is: {{ cart.id }}</h2>
+<h3 style="margin-left: 22px;">Order details were send to your email address - {{ request.user.email }}</h3>
 {% endblock %}
