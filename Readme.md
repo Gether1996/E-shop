@@ -29,5 +29,6 @@
   - after successful payment, instead of creating Order, Cart is changed as "paid=True"
 - ###  Each product has all details shown after clicking on them
 - ### Contact link at the bottom of site, showing details of creators
+![Cart](screenshots/cart.jpg)
 
  
