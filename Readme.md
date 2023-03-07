@@ -1,4 +1,4 @@
-# Welcome to our e-shop
+# Welcome to our e-shop (screenshots at bottom)
 
 ## Functionalities: ##
 
@@ -29,6 +29,21 @@
   - after successful payment, instead of creating Order, Cart is changed as "paid=True"
 - ###  Each product has all details shown after clicking on them
 - ### Contact link at the bottom of site, showing details of creators
-![Cart](screenshots/cart.jpg)
 
- 
+## Screenshots
+
+### Homepage
+![Homepage](screenshots/homepage.jpg)
+
+### Sign-up
+![Signup](screenshots/signup.jpg)
+
+### Filtering (combine as desired, 7 options)
+![Filtering](screenshots/filtering.jpg)
+
+### Cart with whole proccess
+![Cart](screenshots/cart.jpg)
+![Order_confirmation](screenshots/order_confirmation.jpg)
+![Payment](screenshots/payment.jpg)
+![Success](screenshots/success.jpg)
+
