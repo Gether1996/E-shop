@@ -32,7 +32,7 @@
 
 ## Screenshots
 
-### Homepage
+### Homepage (user gether is admin)
 ![Homepage](screenshots/homepage.jpg)
 
 ### Sign-up
@@ -40,6 +40,9 @@
 
 ### Filtering (combine as desired, 7 options)
 ![Filtering](screenshots/filtering.jpg)
+
+### Product Detail
+![Product_detail](screenshots/product_detail.jpg)
 
 ### Cart with whole proccess
 ![Cart](screenshots/cart.jpg)
