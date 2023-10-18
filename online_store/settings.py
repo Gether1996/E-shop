@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'accounts',
-    'migration_fixer',
-
 ]
 
 MIDDLEWARE = [
